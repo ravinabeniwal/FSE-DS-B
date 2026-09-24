@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condition</title>
+</head>
+<body>
+    <script>
+    var n=153;
+    var sum=0;
+    while(n>0){
+        var r=n%10;
+        sum+=r*r*r;
+        n=n/10;
+    }
+    if(sum==n){
+        console.log("Armstrong number");
+    }
+    else{
+        console.log("Not Armstrong number");
+    }
+</script>
+
+</body>
+</html>

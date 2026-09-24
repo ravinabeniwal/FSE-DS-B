@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+</head>
+
+<body>
+
+    <h1 style="color: rgb(91, 131, 120); text-align: center;">
+        Online Shop
+    </h1>
+
+    <p id="demo" style="color: rgb(17, 18, 17);"></p>
+
+    <div id="shop" style="color: rgb(17, 18, 17); border: 2px solid;">
+    </div>
+
+    <button onclick="calculate()"
+        style="background-color: rgb(84, 147, 129); color: rgb(17, 18, 17);">
+        Calculate
+    </button>
+
+    <script>
+        const shop = {
+            Tea: {
+                price:120,
+                image: "<img src="" alt="Tea" width="100" height="100">"
+            },
+            Coffee: {
+                price: 500,
+                
+            },
+            Rice: {
+                price: 600,
+           
+            },
+            Sugar: {
+                price: 700,
+              
+            }
+        };
+
+        // Display products
+        for (let key in shop) {
+            document.getElementById("shop").innerHTML +=
+                key + ": " + shop[key] + " Rs<br>";
+        }
+
+        function calculate() {
+            let x = prompt("Enter your product name:");
+            let y = prompt("Enter your quantity:");
+
+            if (shop[x] !== undefined) {
+                let z = shop[x] * Number(y);
+
+                document.getElementById("demo").innerHTML =
+                    "Total Price for " + x + " is " + z + " Rs";
+            } else {
+                document.getElementById("demo").innerHTML =
+                    "Product not found!";
+            }
+        }
+    </script>
+
+</body>
+</html>
