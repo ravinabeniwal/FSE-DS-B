@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <style>
+        img {
+            height: 100px;
+            width: 100px;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            padding: 10px;
+            font-size: 25px;
+            color: red;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="font-size:25px; border:2px solid red; padding:10px;width:200px;height:200px;">
+        <p>Enter city name</p>
+
+        <input type="text" id="city" placeholder="Enter city name">
+
+        <button onclick="getWeather()">Get Weather</button>
+    </div>
+
+    <div id="data"></div>
+
+    <script>
+
+        const ele = document.getElementById("data");
+
+        const API_KEY = "f2f6517bc38648b28ea44312261009";
+
+        async function getWeather() {
+
+            try {
+
+                let city = document.getElementById("city").value;
+
+                const res = await fetch(
+                    `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`
+                );
+
+                const data = await res.json();
+
+                console.log("DATA", data);
+
+                let row = `
+                    <table>
+                        <tr>
+                            <td>City</td>
+                            <td>${data.location.name}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Temperature</td>
+                            <td>${data.current.temp_c} °C</td>
+                        </tr>
+
+                        <tr>
+                            <td>Weather</td>
+                            <td>${data.current.condition.text}</td>
+                        </tr>
+                    </table>
+                `;
+
+                ele.innerHTML = row;
+
+            }
+            catch(err) {
+                console.log("Error", err);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
